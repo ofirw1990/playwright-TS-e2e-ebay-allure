@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Playwright specific
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+test-screenshots/
+
+# Allure Reports (חשוב מאוד!)
+allure-results/
+allure-report/
+
+# Environment variables & Logs
+.env
+*.log
+npm-debug.log*
+
+# IDE - VS Code / WebStorm
+.vscode/
+.idea/
+
+# Operating System files
+.DS_Store
+Thumbs.db
