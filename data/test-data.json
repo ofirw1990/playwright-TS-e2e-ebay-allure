@@ -1,0 +1,15 @@
+{
+  "scenarios": [
+    {
+      "name": "Shoes under $220",
+      "description": "Search for shoes with max price of $220 and add 5 items to cart",
+      "query": "shoes",
+      "maxPrice": 220,
+      "limit": 5
+    }
+  ],
+  "credentials": {
+    "username": "",
+    "password": ""
+  }
+}

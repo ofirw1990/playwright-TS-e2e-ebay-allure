@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
  "scripts": {
-  "test": "playwright test",
-  "test:headed": "playwright test --headed",
-  "report:allure": "allure generate allure-results --clean && allure open"
+    "test": "playwright test --project=chromium",
+    "test:all": "playwright test",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:debug": "playwright test --project=chromium --debug",
+    "test:ui": "playwright test --ui",
+    "report:allure": "allure generate allure-results --clean && allure open",
+    "report:html": "playwright show-report"
   },
   "repository": {
     "type": "git",

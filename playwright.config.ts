@@ -14,23 +14,34 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
+  /* Timeout for each test */
+  timeout: 300000,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-  ['list'],               // output console
-  ['allure-playwright']   // מחבר את Allure
+    ['list'],               // Console output
+    ['html'],               // HTML report
+    ['allure-playwright', { // Allure report
+      outputFolder: 'allure-results',
+      detail: true,
+      suiteTitle: false,
+    }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-  trace: 'on-first-retry',
-  screenshot: 'only-on-failure'
-},
+    baseURL: 'https://www.ebay.com',
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    actionTimeout: 30000,
+    navigationTimeout: 60000,
+  },
 
 
   /* Configure projects for major browsers */
@@ -40,15 +51,10 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
